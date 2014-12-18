@@ -2,13 +2,16 @@ var ndarray = require('ndarray');
 
 module.exports = ndpane;
 
-function ndpane (data, key) {
-  if (!(this instanceof ndpane)) return new ndpane(data, key);
-  this.data = data;
-  this.nx = data.shape[0];
-  this.ny = data.shape[1];
+function ndpane (data) {
+  if (!(this instanceof ndpane)) return new ndpane(data);
+  if (Array.isArray(data)) {
+    this.data = ndarray(new Uint8Array(data[0] * data[1]), data);
+  } else
+    this.data = data;
+  this.key = 0;
+  this.nx = this.data.shape[0];
+  this.ny = this.data.shape[1];
   this.leafs = null;
-  this.key = key || 0;
 }
 
 ndpane.prototype.split = function (vertical) {
@@ -25,13 +28,15 @@ ndpane.prototype.split = function (vertical) {
   this.leafs = [arr.hi.apply(arr, p[0]), arr.lo.apply(arr, p[1])];
   var self = this;
   this.leafs.forEach(function (leaf, k) {
-    key = leaf.offset + 1;
+    var key = leaf.offset + 1, pane;
     for (var i = 0; i < leaf.shape[0]; ++i) {
       for (var j = 0; j < leaf.shape[1]; ++j) {
         leaf.set(i, j, key);
       }
     }
-    self.leafs[k] = ndpane(leaf, key);
+    pane = ndpane(leaf);
+    pane.key = key;
+    self.leafs[k] = pane;
   });
 };
 
