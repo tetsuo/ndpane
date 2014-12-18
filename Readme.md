@@ -1,10 +1,10 @@
 # ndpane
 
-turn an ndarray into a splitpane
+turn a ndarray into splitpane
 
 # example
 
-```
+```js
 var nx = 4, ny = 4;
 var arr = ndarray(new Uint8Array(nx * ny), [nx, ny]);
 pane = ndpane(arr);
@@ -18,19 +18,19 @@ Resulting 2d array:
 [1, 1,  1,  1],
 [1, 1,  1,  1],
 [9, 9, 11, 11],
-[9, 9, 11, 11],
+[9, 9, 11, 11]
 ```
 
 # api
 
 ## .split()
 
-Split horizontally
+Split horizontally.
 
 ## .split(true)
 
-Split vertically
+Split vertically.
 
 ## .merge()
 
-Merge leafs
+Merge leafs.

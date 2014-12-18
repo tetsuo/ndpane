@@ -12,7 +12,7 @@ test('split leafs', function (t) {
   pane.split(true);
 
   pane.leafs[0].split();
-  t.deepEqual(unpack(arr), 
+  t.deepEqual(unpack(arr),
     [
       [1, 1, 3, 3],
       [1, 1, 3, 3],
