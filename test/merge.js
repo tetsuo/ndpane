@@ -10,8 +10,7 @@ test('merge', function (t) {
   var arr = ndarray(new Uint8Array(ROWS * COLS), [ROWS, COLS]);
   var pane = ndpane(arr);
   pane.split(true);
-  pane.leafs[1].split();
-  pane.leafs[1].leafs[0].split(true);
+  pane.leafs[1].split().leafs[0].split(true).merge();
 
   pane.leafs[1].leafs[0].merge();
   t.deepEqual(unpack(arr), 

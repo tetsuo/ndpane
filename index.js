@@ -38,6 +38,7 @@ ndpane.prototype.split = function (vertical) {
     pane.key = key;
     self.leafs[k] = pane;
   });
+  return this;
 };
 
 ndpane.prototype.merge = function () {
@@ -47,4 +48,5 @@ ndpane.prototype.merge = function () {
       this.data.set(i, j, this.key);
     }
   }
+  return this;
 };
