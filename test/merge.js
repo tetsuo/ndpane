@@ -1,39 +1,32 @@
-var test = require('tap').test;
+var test = require('tape');
 var ndpane = require('..');
-var ndarray = require('ndarray');
 var unpack = require('ndarray-unpack');
-
-var ROWS = 4, COLS = 4;
 
 test('merge', function (t) {
   t.plan(3);
-  var arr = ndarray(new Uint8Array(ROWS * COLS), [ROWS, COLS]);
-  var pane = ndpane(arr);
+  var pane = ndpane(4);
   pane.split(true);
   pane.leafs[1].split().leafs[0].split(true).merge();
-
   pane.leafs[1].leafs[0].merge();
-  t.deepEqual(unpack(arr), 
+  t.deepEqual(unpack(pane.data), 
     [
-      [1, 1,  3,  3],
-      [1, 1,  3,  3],
-      [1, 1, 11, 11],
-      [1, 1, 11, 11]
+      [0, 0,  2,  2],
+      [0, 0,  2,  2],
+      [0, 0, 10, 10],
+      [0, 0, 10, 10]
     ]
   );
-
   pane.leafs[1].merge();
-  t.deepEqual(unpack(arr), 
+  t.deepEqual(unpack(pane.data), 
     [
-      [1, 1, 3, 3],
-      [1, 1, 3, 3],
-      [1, 1, 3, 3],
-      [1, 1, 3, 3]
+      [0, 0, 2, 2],
+      [0, 0, 2, 2],
+      [0, 0, 2, 2],
+      [0, 0, 2, 2]
     ]
   );
-
   pane.merge();
-  t.deepEqual(unpack(arr), 
+  t.deepEqual(unpack(pane.data), 
     [
       [0, 0, 0, 0],
       [0, 0, 0, 0],

@@ -1,54 +1,45 @@
-var test = require('tap').test;
+var test = require('tape');
 var ndpane = require('..');
-var ndarray = require('ndarray');
 var unpack = require('ndarray-unpack');
-
-var ROWS = 4, COLS = 4;
 
 test('split leafs', function (t) {
   t.plan(4);
-  var arr = ndarray(new Uint8Array(ROWS * COLS), [ROWS, COLS]);
-  var pane = ndpane(arr);
+  var pane = ndpane(4);
   pane.split(true);
-
   pane.leafs[0].split();
-  t.deepEqual(unpack(arr),
+  t.deepEqual(unpack(pane.data),
     [
-      [1, 1, 3, 3],
-      [1, 1, 3, 3],
-      [9, 9, 3, 3],
-      [9, 9, 3, 3]
+      [0, 0, 2, 2],
+      [0, 0, 2, 2],
+      [8, 8, 2, 2],
+      [8, 8, 2, 2]
     ]
   );
-
   pane.leafs[1].split(true);
-  t.deepEqual(unpack(arr), 
+  t.deepEqual(unpack(pane.data), 
     [
-      [1, 1, 3, 4],
-      [1, 1, 3, 4],
-      [9, 9, 3, 4],
-      [9, 9, 3, 4]
+      [0, 0, 2, 3],
+      [0, 0, 2, 3],
+      [8, 8, 2, 3],
+      [8, 8, 2, 3]
     ]
   );
-
   pane.leafs[1].leafs[0].split();
-  t.deepEqual(unpack(arr), 
+  t.deepEqual(unpack(pane.data), 
     [
-      [1, 1,  3, 4],
-      [1, 1,  3, 4],
-      [9, 9, 11, 4],
-      [9, 9, 11, 4]
+      [0, 0,  2, 3],
+      [0, 0,  2, 3],
+      [8, 8, 10, 3],
+      [8, 8, 10, 3]
     ]
   );
-
   pane.leafs[0].leafs[1].split();
-  t.deepEqual(unpack(arr), 
+  t.deepEqual(unpack(pane.data), 
     [
-      [1,   1,  3, 4],
-      [1,   1,  3, 4],
-      [9,   9, 11, 4],
-      [13, 13, 11, 4]
+      [0,   0,  2, 3],
+      [0,   0,  2, 3],
+      [8,   8, 10, 3],
+      [12, 12, 10, 3]
     ]
   );
-
 });

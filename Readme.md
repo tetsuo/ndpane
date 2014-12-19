@@ -1,36 +1,47 @@
 # ndpane
 
-turn a ndarray into splitpane
+represents a splitpane.
+
 
 # example
 
 ```js
-var nx = 4, ny = 4;
-var arr = ndarray(new Uint8Array(nx * ny), [nx, ny]);
-pane = ndpane(arr);
-pane.split(); // split horizontally into two leafs
+var ndpane = require('ndpane');
+var unpack = require('ndarray-unpack');
+
+var pane = ndpane(4); // 16 panes
+pane.split(); // split horizontally
 pane.leafs[1].split(true); // split bottom half vertically
+
+console.log(unpack(pane.data));
+// [
+//  [1, 1,  1,  1],
+//  [1, 1,  1,  1],
+//  [9, 9, 11, 11],
+//  [9, 9, 11, 11]
+// ]
 ```
 
-Resulting 2d array:
-
-```
-[1, 1,  1,  1],
-[1, 1,  1,  1],
-[9, 9, 11, 11],
-[9, 9, 11, 11]
-```
 
 # api
 
-## .split()
+## ndpane(size)
 
-Split horizontally.
-
-## .split(true)
-
-Split vertically.
+## .split(vertical)
 
 ## .merge()
 
-Merge leafs.
+## .flip()
+
+## .north(offset)
+
+## .south(offset)
+
+## .west(offset)
+
+## .east(offset)
+
+
+# license
+
+MIT
