@@ -1,7 +1,7 @@
 {
   "name": "ndpane",
   "version": "0.1.2",
-  "description": "",
+  "description": "represents a splitpane",
   "main": "index.js",
   "scripts": {
     "test": "tape test/*.js"
@@ -28,9 +28,7 @@
     "ndarray": "^1.0.16"
   },
   "devDependencies": {
-    "browserify": "^7.0.2",
     "ndarray-unpack": "^1.0.0",
-    "tape": "^3.0.3",
-    "uglify-js": "^2.4.16"
+    "tape": "^3.0.3"
   }
 }
