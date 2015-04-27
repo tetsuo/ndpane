@@ -2,7 +2,6 @@
 
 represents a splitpane.
 
-
 # example
 
 ```js
@@ -22,10 +21,9 @@ console.log(unpack(pane.data));
 // ]
 ```
 
-
 # api
 
-## ndpane(size)
+## ndpane(size, [arr])
 
 ## .split(vertical)
 
@@ -41,6 +39,15 @@ console.log(unpack(pane.data));
 
 ## .east(offset)
 
+## .serialize()
+
+Returns an array representation of a tree that you can use to create a copy.
+
+```js
+var tree = ndpane(4);
+tree.split().leafs[0].split(true);
+var copy = ndpane(4, tree.serialize());
+```
 
 # license
 
