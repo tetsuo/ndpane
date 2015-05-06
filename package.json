@@ -1,6 +1,6 @@
 {
-  "name": "ndpane",
-  "version": "0.2.1",
+  "name": "@koding/ndpane",
+  "version": "0.2.2",
   "description": "represents a splitpane",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/tetsuo/ndpane.git"
+    "url": "https://github.com/koding/ndpane.git"
   },
   "keywords": [
     "pane",
@@ -21,9 +21,9 @@
   "author": "Onur Gunduz <ogunduz@gmail.com> (http://onurgunduz.com/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tetsuo/ndpane/issues"
+    "url": "https://github.com/koding/ndpane/issues"
   },
-  "homepage": "https://github.com/tetsuo/ndpane",
+  "homepage": "https://github.com/koding/ndpane",
   "dependencies": {
     "inherits": "^2.0.1",
     "ndarray": "^1.0.16"
